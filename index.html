@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentiment Analysis</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        textarea {
+            width: 100%;
+            height: 150px;
+            padding: 10px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+        .result {
+            margin-top: 20px;
+        }
+        .sentiment {
+            font-weight: bold;
+        }
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Sentiment Analysis</h1>
+        <textarea id="text-input" placeholder="Enter text for sentiment analysis..."></textarea><br>
+        <button onclick="analyzeSentiment()">Analyze Sentiment</button>
+
+        <div id="result" class="result"></div>
+        <div id="error-message" class="error"></div>
+    </div>
+
+    <script>
+        async function analyzeSentiment() {
+            const inputText = document.getElementById("text-input").value;
+            const errorMessageDiv = document.getElementById("error-message");
+
+            // Clear any previous error message
+            errorMessageDiv.innerHTML = "";
+
+            if (!inputText.trim()) {
+                alert("Please enter some text.");
+                return;
+            }
+
+            try {
+                // Use your Render backend API URL here (change this)
+                const apiUrl = "https://your-backend-on-render.com/analyze_sentiment/";
+
+                const response = await fetch(apiUrl, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ text: inputText })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    const resultDiv = document.getElementById("result");
+                    resultDiv.innerHTML = `
+                        <p><span class="sentiment">Sentiment:</span> ${data.result[0].sentiment}</p>
+                        <p>Score: ${data.result[0].score.toFixed(2)}%</p>
+                    `;
+                } else {
+                    // Display error message from backend
+                    errorMessageDiv.innerHTML = `Error: ${data.detail}`;
+                }
+            } catch (error) {
+                // Catch any unexpected errors (e.g., network issues)
+                errorMessageDiv.innerHTML = "An unexpected error occurred. Please try again later.";
+                console.error("Error during sentiment analysis:", error);
+            }
+        }
+    </script>
+</body>
+</html>
