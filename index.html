@@ -85,10 +85,11 @@
                     errorMessageDiv.innerHTML = `Error: ${data.detail}`;
                 }
             } catch (error) {
-                // Catch any unexpected errors (e.g., network issues)
-                errorMessageDiv.innerHTML = "An unexpected error occurred. Please try again later.";
-                console.error("Error during sentiment analysis:", error);
+    // Catch any unexpected errors (e.g., network issues)
+    errorMessageDiv.innerHTML = "An unexpected error occurred. Please try again later.";
+    console.error("Error during sentiment analysis:", error);  // This will log the error details to the console
             }
+
         }
     </script>
 </body>
