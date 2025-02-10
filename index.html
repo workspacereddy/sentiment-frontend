@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sentiment Analysis</title>
+    <title>Test Your Love</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -39,9 +39,9 @@
 </head>
 <body>
     <div class="container">
-        <h1>Sentiment Analysis</h1>
-        <textarea id="text-input" placeholder="Enter text for sentiment analysis..."></textarea><br>
-        <button onclick="analyzeSentiment()">Analyze Sentiment</button>
+        <h1>Test Your Love</h1>
+        <textarea id="text-input" placeholder="Enter your Love Sentence..."></textarea><br>
+        <button onclick="analyzeSentiment()">Love Test</button>
 
         <div id="result" class="result"></div>
         <div id="error-message" class="error"></div>
@@ -77,8 +77,8 @@
                 if (response.ok) {
                     const resultDiv = document.getElementById("result");
                     resultDiv.innerHTML = `
-                        <p><span class="sentiment">Sentiment:</span> ${data.result[0].sentiment}</p>
-                        <p>Score: ${data.result[0].score.toFixed(2)}%</p>
+                        <p><span class="sentiment">Love:</span> ${data.result[0].sentiment}</p>
+                        <p>Love Score: ${data.result[0].score.toFixed(2)}%</p>
                     `;
                 } else {
                     // Display error message from backend
