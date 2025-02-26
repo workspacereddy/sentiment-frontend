@@ -42,8 +42,8 @@
 <body>
     <div class="container">
         <h1>Analysis Sentence</h1>
-        <textarea id="text-input" placeholder="Enter your Sentence..."></textarea><br>
-        <button onclick="analyzeSentiment()">Analysis Sentence</button>
+        <textarea id="text-input" placeholder="Enter your Sentence..." onkeypress="if(event.key === 'Enter') analyzeSentiment()></textarea><br>
+        <button onclick="analyzeSentiment() ">Analysis Sentence</button>
 
         <div id="result" class="result"></div>
         <div id="error-message" class="error"></div>
