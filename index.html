@@ -88,9 +88,11 @@
                         <p><span class="sentiment">Love:</span> ${data.result[0].sentiment}</p>
                         <p>Love Score: ${data.result[0].score.toFixed(2)}%</p>
                     `;
-                    const { data, error } = await supabase
-                    .from("sentiment")
-                    .insert([{ text-input }]);
+                     // Save to Supabase
+                    const { error } = await supabase.from("sentiment").insert([{ text: inputText }]);
+                    if (error) {
+                        console.error("Error saving to Supabase:", error.message);
+                    }
                 } else {
                     // Display error message from backend
                     errorMessageDiv.innerHTML = `Error: ${data.detail}`;
