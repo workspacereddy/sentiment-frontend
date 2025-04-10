@@ -79,8 +79,8 @@
                 if (response.ok) {
                     const resultDiv = document.getElementById("result");
                     resultDiv.innerHTML = `
-                        <p><span class="sentiment">Love:</span> ${data.result[0].sentiment}</p>
-                        <p>Love Score: ${data.result[0].score.toFixed(2)}%</p>
+                        <p><span class="sentiment">Sign:</span> ${data.result[0].sentiment}</p>
+                        <p>Score: ${data.result[0].score.toFixed(2)}%</p>
                     `;
                 } else {
                     // Display error message from backend
